@@ -12,6 +12,7 @@ class InputScreen extends StatefulWidget {
 class _InputScreenState extends State<InputScreen> {
   genderCluster? gend;
   Color cardColor = Color(0xff272A4D);
+  int height = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,6 +56,65 @@ class _InputScreenState extends State<InputScreen> {
                     : Color(0xff14183B),
               ),
             ]),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                color: cardColor,
+              ),
+              padding: EdgeInsets.all(8),
+              margin: EdgeInsets.all(8),
+              height: 200,
+              width: 400,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "HEIGHT",
+                    style: txt,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.ideographic,
+                    children: [
+                      Text(
+                        "$height",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 60,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      Positioned(
+                        top: 10,
+                        bottom: 20,
+                        child: Text(
+                          "cm",
+                          style: txt
+                        ),
+                      ),
+                    ],
+                  ),
+                  Slider(
+                      value: height.toDouble(),
+                      min: 0,
+                      max: 250,
+                      divisions: 250,
+                      activeColor: Colors.white,
+                      inactiveColor: Colors.grey,
+                      thumbColor: Colors.pinkAccent,
+                      onChanged: (double newValue){
+                        setState(() {
+                          height = newValue.round();
+                        });
+                      }
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
